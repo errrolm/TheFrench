@@ -9,10 +9,10 @@ module.exports = {
     try {
       const response = await fetch('https://api.quotable.io/random');
       const data = await response.json();
-      interaction.reply(data.content);
+      await interaction.reply(data.content);
     } catch (error) {
       console.error(error);
-      interaction.reply('An error occurred while fetching a fortune.');
+      await interaction.reply('An error occurred while fetching a fortune.');
     }
   },
 };

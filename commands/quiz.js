@@ -1,5 +1,5 @@
 const { SlashCommandBuilder } = require('@discordjs/builders');
-const { MessageActionRow, MessageButton } = require('discord.js');
+const { ActionRowBuilder, ButtonBuilder, ButtonStyle } = require('discord.js');
 const fetch = require('node-fetch');
 const he = require('he');
 const db = require('../database');
@@ -23,7 +23,6 @@ module.exports = {
         const remainingTime = (cooldowns[userId] - Date.now()) / 1000;
         return interaction.reply({ content: `You are on cooldown. Please wait ${remainingTime.toFixed(1)} seconds.`, ephemeral: true });
       }
-
       cooldowns[userId] = Date.now() + commandCooldown * 1000;
 
       const response = await fetch(
@@ -36,23 +35,18 @@ module.exports = {
       }
 
       const item = data.results[0];
-      const correctAnswer = item.correct_answer;
+      const correctAnswer = he.decode(item.correct_answer);
       const incorrectAnswers = item.incorrect_answers.map((answer) => he.decode(answer));
       const answers = [...incorrectAnswers, correctAnswer];
       answers.sort(() => Math.random() - 0.5);
 
-      const row = new MessageActionRow();
-      const buttons = [];
-
-      for (const answer of answers) {
-        buttons.push(
-          new MessageButton()
-            .setCustomId(answer)
-            .setLabel(answer)
-            .setStyle('PRIMARY')
-        );
-      }
-
+      const row = new ActionRowBuilder();
+      const buttons = answers.map((answer) =>
+        new ButtonBuilder()
+          .setCustomId(answer)
+          .setLabel(answer)
+          .setStyle(ButtonStyle.Primary)
+      );
       row.addComponents(buttons);
 
       await interaction.reply({
@@ -63,9 +57,7 @@ module.exports = {
       const collector = interaction.channel.createMessageComponentCollector({ time: 30000 });
 
       collector.on('collect', async (btn) => {
-        buttons.forEach((button) => {
-          button.setDisabled(true);
-        });
+        row.components.forEach((button) => button.setDisabled(true));
 
         if (btn.customId === correctAnswer) {
           db.add(`balance_${btn.user.id}`, 100);
@@ -82,13 +74,11 @@ module.exports = {
       });
 
       collector.on('end', () => {
-        buttons.forEach((button) => {
-          button.setDisabled(true);
-        });
+        row.components.forEach((button) => button.setDisabled(true));
       });
     } catch (error) {
       console.error(error);
-      await interaction.followUp('An error occurred while fetching a trivia question.');
+      await interaction.followUp({ content: 'An error occurred while fetching a trivia question.' });
     }
   },
 };

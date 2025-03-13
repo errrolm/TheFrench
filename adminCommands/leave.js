@@ -1,19 +1,18 @@
-const { SlashCommandBuilder } = require('@discordjs/builders');
+const { SlashCommandBuilder } = require("@discordjs/builders");
 
 module.exports = {
   data: new SlashCommandBuilder()
-    .setName('leave')
-    .setDescription('Leave a server by providing its ID')
+    .setName("leave")
+    .setDescription("Leave a server by providing its ID")
     .addStringOption((option) =>
       option
-        .setName('serverid')
-        .setDescription('ID of the server you want to leave')
+        .setName("serverid")
+        .setDescription("ID of the server you want to leave")
         .setRequired(true),
     ),
   async execute(interaction) {
-    const serverIdToLeave = interaction.options.getString('serverid');
+    const serverIdToLeave = interaction.options.getString("serverid");
     const server = interaction.client.guilds.cache.get(serverIdToLeave);
-
     if (server) {
       await server.leave();
       await interaction.reply(`Left server: ${server.name}`);

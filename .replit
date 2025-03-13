@@ -1,4 +1,5 @@
 entrypoint = "index.js"
+modules = ["nodejs-20"]
 
 [interpreter]
 command = [
