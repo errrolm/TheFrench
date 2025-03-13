@@ -1,0 +1,152 @@
+if(command === "help"){
+  const helpRow = new MessageActionRow()
+    .addComponents(
+      new MessageButton()
+        .setURL('https://discord.com/api/oauth2/authorize?client_id=953557418913181696&permissions=2349190208&scope=bot%20applications.commands')
+      .setLabel('Invite me!')
+        .setStyle('LINK')
+        .setDisabled(false),
+
+      new MessageButton()
+        .setURL('https://top.gg/bot/953557418913181696')
+      .setLabel('Vote on Tog.gg')
+        .setStyle('LINK')
+        .setDisabled(false),
+
+      new MessageButton()
+        .setURL('https://discordbotlist.com/bots/thefrench')
+      .setLabel('Vote on DBL')
+        .setStyle('LINK')
+        .setDisabled(false)
+);
+const helpEmbed = new MessageEmbed()
+          .setTitle("How may I help you?")
+          .setColor(process.env.color)
+          .addFields(
+              { name: 'Prefix', value: '`fr!`', inline: true },
+              { name: "Slash commands", value: "`8ball member-info cat dog fact cute meme space news changelog bug-hunter hug suggest sponsor`" },
+              { name: "Image", value: "`trigger slap fuse invert hitler jail spank wasted trash bed affect beautiful`" },
+              { name: "Music", value: "`play`" },
+              { name: "Test", value: "`ping`" },
+              { name: "Help", value: "`help`" }
+          )
+        .setTimestamp()
+        await message.reply({ embeds: [helpEmbed], components: [helpRow] });
+} 
+else if(command === "trigger"){
+    let member = message.mentions.members.first();
+  if(!member){
+      let image = await canvacord.Canvas.trigger(authorAvatar);
+      let attachment = new MessageAttachment(image, "triggered.gif");
+      await message.channel.send({ files: [attachment] });
+  } else {
+      let memberAvatar = member.displayAvatarURL({ dynamic: false, format: 'png' });
+      let image = await canvacord.Canvas.trigger(memberAvatar);
+      let attachment = new MessageAttachment(image, "triggered.gif");
+      await message.channel.send({ files: [attachment] });
+  }
+} 
+else if(command === "slap"){
+    let member = message.mentions.members.first();
+  if(!member){
+      let image = await canvacord.Canvas.slap(botAvatar, authorAvatar);
+      let attachment = new MessageAttachment(image, "slap.png");
+      await message.channel.send({ files: [attachment] });
+  } else {
+      let memberAvatar = member.displayAvatarURL({ dynamic: false, format: 'png' });
+      let image = await canvacord.Canvas.slap(authorAvatar, memberAvatar);
+      let attachment = new MessageAttachment(image, "slap.png");
+      await message.channel.send({ files: [attachment] });
+  } 
+} 
+else if(command === "fuse"){
+    let member = message.mentions.members.first();
+  if(!member){
+      let image = await canvacord.Canvas.fuse(botAvatar, authorAvatar);
+      let attachment = new MessageAttachment(image, "fuse.png");
+      await message.channel.send({ files: [attachment] });
+  } else {
+      let memberAvatar = member.displayAvatarURL({ dynamic: false, format: 'png' });
+      let image = await canvacord.Canvas.fuse(authorAvatar, memberAvatar);
+      let attachment = new MessageAttachment(image, "fuse.png");
+      await message.channel.send({ files: [attachment] });
+  } 
+}
+else if(command === "invert"){
+    let member = message.mentions.members.first();
+  if(!member){
+      let image = await canvacord.Canvas.invert(authorAvatar);
+      let attachment = new MessageAttachment(image, "inverted.png");
+      await message.channel.send({ files: [attachment] });
+  } else {
+      let memberAvatar = member.displayAvatarURL({ dynamic: false, format: 'png' });
+      let image = await canvacord.Canvas.invert(memberAvatar);
+      let attachment = new MessageAttachment(image, "inverted.png");
+      await message.channel.send({ files: [attachment] });
+  } 
+}
+else if(command === "hitler"){
+    let member = message.mentions.members.first();
+  if(!member){
+      let image = await canvacord.Canvas.hitler(authorAvatar);
+      let attachment = new MessageAttachment(image, "hitler.png");
+      await message.channel.send({ files: [attachment] });
+  } else {
+      let memberAvatar = member.displayAvatarURL({ dynamic: false, format: 'png' });
+      let image = await canvacord.Canvas.hitler(memberAvatar);
+      let attachment = new MessageAttachment(image, "hiler.png");
+      await message.channel.send({ files: [attachment] });
+  } 
+}
+else if(command === "jail" || command === "prison"){
+    let member = message.mentions.members.first();
+  if(!member){
+      let image = await canvacord.Canvas.jail(botAvatar, authorAvatar);
+      let attachment = new MessageAttachment(image, "prison.png");
+      await message.channel.send({ files: [attachment] });
+  } else {
+      let memberAvatar = member.displayAvatarURL({ dynamic: false, format: 'png' });
+      let image = await canvacord.Canvas.jail(authorAvatar, memberAvatar);
+      let attachment = new MessageAttachment(image, "prison.png");
+      await message.channel.send({ files: [attachment] });
+  } 
+}
+else if(command === "spank"){
+    let member = message.mentions.members.first();
+  if(!member){
+      let image = await canvacord.Canvas.spank(botAvatar, authorAvatar);
+      let attachment = new MessageAttachment(image, "spank.png");
+      await message.channel.send({ files: [attachment] });
+  } else {
+      let memberAvatar = member.displayAvatarURL({ dynamic: false, format: 'png' });
+      let image = await canvacord.Canvas.spank(authorAvatar, memberAvatar);
+      let attachment = new MessageAttachment(image, "spank.png");
+      await message.channel.send({ files: [attachment] });
+  } 
+}
+else if(command === "wasted"){
+    let member = message.mentions.members.first();
+  if(!member){
+      let image = await canvacord.Canvas.wasted(authorAvatar);
+      let attachment = new MessageAttachment(image, "wasted.png");
+      await message.channel.send({ files: [attachment] });
+  } else {
+      let memberAvatar = member.displayAvatarURL({ dynamic: false, format: 'png' });
+      let image = await canvacord.Canvas.wasted(memberAvatar);
+      let attachment = new MessageAttachment(image, "wasted.png");
+      await message.channel.send({ files: [attachment] });
+  } 
+}
+else if(command === "trash"){
+    let member = message.mentions.members.first();
+  if(!member){
+      let image = await canvacord.Canvas.trash(authorAvatar);
+      let attachment = new MessageAttachment(image, "trash.png");
+      await message.channel.send({ files: [attachment] });
+  } else {
+      let memberAvatar = member.displayAvatarURL({ dynamic: false, format: 'png' });
+      let image = await canvacord.Canvas.trash(memberAvatar);
+      let attachment = new MessageAttachment(image, "trash.png");
+      await message.channel.send({ files: [attachment] });
+  } 
+  }
