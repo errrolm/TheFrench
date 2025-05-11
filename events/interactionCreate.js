@@ -11,13 +11,13 @@ module.exports = {
     await db.add(`commandsUsed_${interaction.user.id}`, 1);
     const commandsBalance = (await db.get(`commandsUsed_${interaction.user.id}`)) || 0;
     if (!command) return;
-    const targetGuildId = '1235990996282638376';
+    const targetGuildId = process.env.targetGuild;
     const targetGuild = interaction.client.guilds.cache.get(targetGuildId);
     if (!targetGuild) {
       console.error(`Guild with ID ${targetGuildId} not found.`);
       return;
     }
-    const channelId = '1237009241974243411';
+    const channelId = process.env.channelId;
     const channel = targetGuild.channels.cache.get(channelId);
     const dataEmbed = new EmbedBuilder()
       .setColor(process.env.color)
