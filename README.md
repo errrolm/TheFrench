@@ -1,6 +1,6 @@
 The French Discord Bot packs a little bit of everything to keep your server entertained and organized:
 
-Fun & Games: /8ball, /fortune, /quiz, /highlow, snowball fights (/rollsnowball, /throwsnowball), and playful actions (/slap, /pat, /spank, /wasted, /hitler).
+Fun & Games: /8ball, /fortune, /quiz, /todayswordle, /guesswordle, /highlow, snowball fights (/rollsnowball, /throwsnowball), and playful actions (/slap, /pat, /spank, /wasted, /hitler).
 
 Animal & Meme Pics: /cat, /dog, /meme, /comic, /space for random images and laughs.
 
